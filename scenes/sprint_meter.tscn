@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://fjaa5nwo51wm"]
+
+[ext_resource type="Texture2D" uid="uid://dlo16o5juajg7" path="res://assets/sprites/sprint_bars.png" id="1_imnw6"]
+[ext_resource type="Script" path="res://scripts/sprint_meter.gd" id="2_g1mam"]
+
+[node name="SprintMeter" type="Sprite2D"]
+visible = false
+position = Vector2(0, 16)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_imnw6")
+hframes = 5
+region_enabled = true
+region_rect = Rect2(0, 21, 240, 7)
+script = ExtResource("2_g1mam")
+
+[node name="SprintMeterTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="SprintMeterTimer" to="." method="_on_sprint_meter_timer_timeout"]
