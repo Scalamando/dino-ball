@@ -1,0 +1,37 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://e40ppa4xvyrm"]
+
+[ext_resource type="Texture2D" uid="uid://c41q8lrqol2cl" path="res://assets/sprites/ui/Spritesheet_UI_Flat.png" id="2_1xmuk"]
+[ext_resource type="FontFile" uid="uid://df5vioalfde6x" path="res://assets/fonts/PixelAE-Regular.ttf" id="2_xwcb0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bxtdt"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c25a0"]
+bg_color = Color(0, 0, 0, 0.188235)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 0.25098)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dpv3w"]
+texture = ExtResource("2_1xmuk")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(32, 32, 96, 96)
+
+[resource]
+default_font = ExtResource("2_xwcb0")
+default_font_size = 16
+Button/colors/font_color = Color(0.129412, 0.188235, 0.219608, 1)
+Button/colors/font_focus_color = Color(0.0313726, 0.0431373, 0.0509804, 1)
+Button/colors/font_hover_color = Color(0.0313726, 0.0431373, 0.0509804, 1)
+Button/colors/font_hover_pressed_color = Color(0.0313726, 0.0431373, 0.0509804, 1)
+Button/colors/font_outline_color = Color(0.0313726, 0.0431373, 0.0509804, 1)
+Button/colors/font_pressed_color = Color(0.0313726, 0.0431373, 0.0509804, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_bxtdt")
+Panel/styles/panel = SubResource("StyleBoxFlat_c25a0")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_dpv3w")
