@@ -22,12 +22,15 @@ var last_sprint = 0
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 
 func get_sprint_tank():
-	return  1 - ((SPRINT_TANK_SIZE_SEC - sprint_tank_sec) / SPRINT_TANK_SIZE_SEC)
+	return 1 - ((SPRINT_TANK_SIZE_SEC - sprint_tank_sec) / SPRINT_TANK_SIZE_SEC)
+
+func lose():
+	animated_sprite.play("hurt")
 
 func _physics_process(delta):
 	_tick_sprint(delta)
 	
-	if animated_sprite.animation == "kick":
+	if _in_immobile_animation():
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
@@ -56,8 +59,11 @@ func _tick_sprint(delta):
 		if sprint_tank_sec >= SPRINT_TANK_SIZE_SEC:
 			sprint_tank_full.emit()
 
+func _in_immobile_animation():
+	return animated_sprite.animation == "kick" or animated_sprite.animation == "hurt"
+
 func _process(_delta):
-	if animated_sprite.animation == "kick" and animated_sprite.is_playing():
+	if _in_immobile_animation() and animated_sprite.is_playing():
 		return
 		
 	if velocity.length() > 25.0:

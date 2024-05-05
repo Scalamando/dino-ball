@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1ljwbkyxhojy"]
+[gd_scene load_steps=15 format=3 uid="uid://c1ljwbkyxhojy"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_c2lpi"]
 [ext_resource type="PackedScene" uid="uid://cxb18p8qr7ux7" path="res://scenes/player_controller.tscn" id="1_x4pek"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://di7durhtnwyth" path="res://scenes/dino.tscn" id="3_my4rq"]
 [ext_resource type="PackedScene" uid="uid://fjaa5nwo51wm" path="res://scenes/sprint_meter.tscn" id="4_fjol2"]
 [ext_resource type="PackedScene" uid="uid://bk1rgkyo6whp1" path="res://scenes/agent_controller.tscn" id="7_6k5cj"]
+[ext_resource type="FontFile" uid="uid://ch3i6ovujm3io" path="res://assets/fonts/PixelAE-Bold.ttf" id="8_imah7"]
+[ext_resource type="FontFile" uid="uid://df5vioalfde6x" path="res://assets/fonts/PixelAE-Regular.ttf" id="8_ntkwh"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="9_t7n4l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rf3q5"]
 size = Vector2(124, 128)
@@ -493,6 +496,9 @@ terrain_set_0/terrain_0/name = "Desert"
 terrain_set_0/terrain_0/color = Color(0.74902, 0.603922, 0.239216, 1)
 sources/0 = SubResource("TileSetAtlasSource_uwg55")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5ujs"]
+size = Vector2(40, 16)
+
 [node name="DinoBall" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_area", "opponent_area", "player", "opponent", "ball")]
@@ -531,6 +537,7 @@ dino = NodePath("PlayerDino")
 dino_controller = NodePath("..")
 
 [node name="BeachBall" parent="." instance=ExtResource("3_1rwuf")]
+z_index = 1
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_lk3rq")
@@ -544,3 +551,92 @@ area = NodePath("../GameManager/OpponentArea/OpponentAreaShape")
 
 [node name="AgentDino" parent="AgentController" instance=ExtResource("3_my4rq")]
 position = Vector2(66, 0)
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="GameOver"]
+layout_mode = 0
+offset_left = -121.0
+offset_top = -55.0
+offset_right = -11.0
+offset_bottom = -25.0
+theme_override_colors/font_color = Color(0.207843, 0.207843, 0.25098, 1)
+theme_override_fonts/font = ExtResource("8_imah7")
+theme_override_font_sizes/font_size = 20
+text = "Game Over"
+
+[node name="RestartArea" type="Area2D" parent="GameOver"]
+position = Vector2(-65, 54)
+script = ExtResource("9_t7n4l")
+
+[node name="ActiveBackground" type="Panel" parent="GameOver/RestartArea"]
+visible = false
+offset_left = -24.0
+offset_top = -11.0
+offset_right = 24.0
+offset_bottom = 7.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOver/RestartArea"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_y5ujs")
+
+[node name="RestartLabel" type="Label" parent="GameOver/RestartArea"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -7.5
+offset_right = 19.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.207843, 0.207843, 0.25098, 1)
+theme_override_fonts/font = ExtResource("8_ntkwh")
+theme_override_font_sizes/font_size = 10
+text = "Restart"
+
+[node name="ScoreTopLabel" type="Label" parent="GameOver"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = -16.0
+offset_right = -4.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(0.207843, 0.207843, 0.25098, 1)
+theme_override_font_sizes/font_size = 10
+text = "You hit the ball"
+horizontal_alignment = 1
+
+[node name="ScoreValueLabel" type="Label" parent="GameOver"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = -2.0
+offset_right = -4.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.207843, 0.207843, 0.25098, 1)
+theme_override_fonts/font = ExtResource("8_imah7")
+theme_override_font_sizes/font_size = 10
+text = "XXX"
+horizontal_alignment = 1
+
+[node name="ScoreBottomLabel" type="Label" parent="GameOver"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = 9.0
+offset_right = -4.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0.207843, 0.207843, 0.25098, 1)
+theme_override_font_sizes/font_size = 10
+text = "times."
+horizontal_alignment = 1
+
+[connection signal="game_over" from="GameManager" to="AgentController" method="_on_game_over"]
+[connection signal="body_entered" from="GameOver/RestartArea" to="GameOver/RestartArea" method="_on_body_entered"]
+[connection signal="body_exited" from="GameOver/RestartArea" to="GameOver/RestartArea" method="_on_body_exited"]
+[connection signal="interacted" from="GameOver/RestartArea" to="GameManager" method="_on_restart_area_interacted"]

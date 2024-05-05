@@ -25,7 +25,7 @@ script = ExtResource("1_drua0")
 shape = SubResource("CircleShape2D_x0jbk")
 
 [node name="BallSprite" type="Sprite2D" parent="."]
-z_index = 2
+z_index = 1
 texture = ExtResource("1_4014t")
 
 [node name="ShadowSprite" type="Sprite2D" parent="."]

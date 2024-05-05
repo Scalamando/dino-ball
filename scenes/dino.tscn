@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://di7durhtnwyth"]
+[gd_scene load_steps=30 format=3 uid="uid://di7durhtnwyth"]
 
 [ext_resource type="Texture2D" uid="uid://dt78xvk4rnem2" path="res://assets/sprites/DinoSprites - doux.png" id="1_o8r8l"]
 [ext_resource type="Script" path="res://scripts/dino_controller.gd" id="1_s2hdr"]
@@ -8,6 +8,18 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6iqj5"]
 radius = 3.0
 height = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0pk6"]
+atlas = ExtResource("1_o8r8l")
+region = Rect2(336, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xg02"]
+atlas = ExtResource("1_o8r8l")
+region = Rect2(360, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik2co"]
+atlas = ExtResource("1_o8r8l")
+region = Rect2(384, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dfybm"]
 atlas = ExtResource("1_o8r8l")
@@ -91,6 +103,20 @@ region = Rect2(552, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kmd7q"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0pk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xg02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik2co")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dfybm")
@@ -185,9 +211,8 @@ shape = SubResource("CapsuleShape2D_6iqj5")
 z_index = 1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kmd7q")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.531743
 
 [node name="ShadowSprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_5sabg")

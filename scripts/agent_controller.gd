@@ -7,8 +7,13 @@ class_name AgentController
 
 @onready var area_rect = Rect2(area.global_position - area.shape.size/2, area.shape.size)
 
+var active = true
+
+func in_area(p: Vector2):
+	return area_rect.has_point(p)
+
 func _physics_process(_delta):
-	if(in_area(ball.target)):
+	if active and in_area(ball.target):
 		if dino.position.distance_to(ball.target) > 3.0:
 			dino.direction = dino.position.direction_to(ball.target)
 		else:
@@ -19,5 +24,5 @@ func _physics_process(_delta):
 		else:
 			dino.direction = Vector2.ZERO
 
-func in_area(p: Vector2):
-	return area_rect.has_point(p)
+func _on_game_over():
+	active = false
