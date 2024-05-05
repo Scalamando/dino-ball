@@ -3,11 +3,14 @@ class_name BeachBall
 
 signal touched_ground
 
-const MIN_TRAVEL_TIME_MSEC = 1750
-const GROUND_SHADOW_OFFSET = Vector2(0, 2.0)
+@export var velocity : float = 70.0
+@export var MIN_TRAVEL_TIME_MSEC = 1750
 
-var velocity : float = 70.0
-var height_mag : float = 60.0
+@export_group("Cosmetic")
+@export var MAX_RAND_ANGULAR_VELOCITY = 5.0
+@export var GROUND_SHADOW_OFFSET = Vector2(0, 2.0)
+@export var ARC_HEIGHT : float = 60.0
+
 
 var origin : Vector2 = Vector2.ZERO
 var target : Vector2 = Vector2.ZERO
@@ -25,10 +28,9 @@ var progress: float = 0.0
 func set_target(new_target: Vector2):
 	origin = position
 	target = new_target
-	var distance = origin.distance_to(target)
-	travel_time_msec = max(MIN_TRAVEL_TIME_MSEC, (distance / velocity) * 1000)
+	travel_time_msec = max(MIN_TRAVEL_TIME_MSEC, (origin.distance_to(target) / velocity) * 1000)
 	last_hit_msec = Time.get_ticks_msec()
-	angular_velocity = randf_range(-PI, PI) * 5
+	angular_velocity = randf_range(-PI, PI) * MAX_RAND_ANGULAR_VELOCITY
 
 func _integrate_forces(state):
 	if target == Vector2.ZERO:
@@ -37,7 +39,7 @@ func _integrate_forces(state):
 	progress = min(float(Time.get_ticks_msec() - last_hit_msec) / travel_time_msec, 1)
 	ground_position = lerp(origin, target, _inv_par(progress))
 	
-	var height = _calc_height(progress) * height_mag
+	var height = _calc_height(progress) * ARC_HEIGHT
 	
 	if abs(height) > 10:
 		collision_shape.set_deferred("disabled", true)
