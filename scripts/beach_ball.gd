@@ -31,6 +31,14 @@ func set_target(new_target: Vector2):
 	last_hit_msec = Time.get_ticks_msec()
 	angular_velocity = randf_range(-PI, PI) * MAX_RAND_ANGULAR_VELOCITY
 
+func reset():
+	origin = Vector2.ZERO
+	target = Vector2.ZERO
+	ground_position = Vector2.ZERO
+	travel_time_msec = 0.0
+	last_hit_msec = 0
+	progress = 0.0
+
 func _integrate_forces(state):
 	if target == Vector2.ZERO:
 		return
