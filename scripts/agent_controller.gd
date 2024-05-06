@@ -7,7 +7,7 @@ class_name AgentController
 
 @onready var area_rect = Rect2(area.global_position - area.shape.size/2, area.shape.size)
 
-var active : bool = true
+var active : bool = false
 
 func in_area(p: Vector2):
 	return area_rect.has_point(p)

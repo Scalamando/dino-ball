@@ -49,7 +49,7 @@ func _on_agent_ball_hit(dino: DinoController):
 func _on_ball_touched_ground():
 	if not started or not active_dino_controller:
 		return
-		
+	
 	active_dino_controller.lose()
 	active_dino_controller = null
 	started = false
@@ -60,6 +60,7 @@ func _on_ball_touched_ground():
 func _on_start_countdown():
 	ball.reset()
 	ball.position = Vector2.ZERO
+	agent.active = true
 	active_dino_controller = player.dino_controller
 	ui_start_menu.visible = false
 	ui_start_countdown.play()
