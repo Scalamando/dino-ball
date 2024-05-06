@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://kefoxdhveago"]
+
+[ext_resource type="Script" path="res://scripts/area_button.gd" id="1_i2fjv"]
+[ext_resource type="FontFile" uid="uid://df5vioalfde6x" path="res://assets/fonts/PixelAE-Regular.ttf" id="2_ne2ni"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5ujs"]
+size = Vector2(46, 16)
+
+[node name="AreaButton" type="Area2D"]
+script = ExtResource("1_i2fjv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_y5ujs")
+
+[node name="ActiveBackground" type="Panel" parent="."]
+visible = false
+offset_left = -24.0
+offset_top = -11.0
+offset_right = 24.0
+offset_bottom = 7.0
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -8.0
+offset_right = 23.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.207843, 0.207843, 0.25098, 1)
+theme_override_fonts/font = ExtResource("2_ne2ni")
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+uppercase = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

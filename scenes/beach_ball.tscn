@@ -17,7 +17,6 @@ collision_mask = 6
 mass = 0.3
 physics_material_override = SubResource("PhysicsMaterial_v1kv0")
 gravity_scale = 0.0
-can_sleep = false
 angular_damp = 0.1
 script = ExtResource("1_drua0")
 
@@ -25,10 +24,12 @@ script = ExtResource("1_drua0")
 shape = SubResource("CircleShape2D_x0jbk")
 
 [node name="BallSprite" type="Sprite2D" parent="."]
-z_index = 1
+z_index = 2
 texture = ExtResource("1_4014t")
 
 [node name="ShadowSprite" type="Sprite2D" parent="."]
 top_level = true
+z_index = 1
+z_as_relative = false
 position = Vector2(0, 2)
 texture = ExtResource("3_l0foi")

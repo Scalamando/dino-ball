@@ -11,7 +11,6 @@ signal touched_ground
 @export var GROUND_SHADOW_OFFSET = Vector2(0, 2.0)
 @export var ARC_HEIGHT : float = 60.0
 
-
 var origin : Vector2 = Vector2.ZERO
 var target : Vector2 = Vector2.ZERO
 var ground_position : Vector2 = Vector2.ZERO
