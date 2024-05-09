@@ -1,14 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://c1ljwbkyxhojy"]
+[gd_scene load_steps=21 format=3 uid="uid://c1ljwbkyxhojy"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_c2lpi"]
 [ext_resource type="Script" path="res://main.gd" id="1_vfftf"]
-[ext_resource type="PackedScene" uid="uid://cxb18p8qr7ux7" path="res://scenes/player_controller.tscn" id="1_x4pek"]
 [ext_resource type="Texture2D" uid="uid://bwqick323nyek" path="res://assets/sprites/desert_.png" id="2_2btbv"]
 [ext_resource type="PackedScene" uid="uid://csvbculx5hbu4" path="res://scenes/beach_ball.tscn" id="3_1rwuf"]
-[ext_resource type="PackedScene" uid="uid://di7durhtnwyth" path="res://scenes/dino.tscn" id="3_my4rq"]
+[ext_resource type="PackedScene" uid="uid://di7durhtnwyth" path="res://scenes/human_player.tscn" id="3_my4rq"]
 [ext_resource type="Texture2D" uid="uid://f5bida87ei63" path="res://assets/sprites/net.png" id="4_5ui8t"]
-[ext_resource type="PackedScene" uid="uid://fjaa5nwo51wm" path="res://scenes/sprint_meter.tscn" id="4_fjol2"]
-[ext_resource type="PackedScene" uid="uid://bk1rgkyo6whp1" path="res://scenes/agent_controller.tscn" id="7_6k5cj"]
+[ext_resource type="PackedScene" uid="uid://tw6xaici35mm" path="res://scenes/ai_player.tscn" id="7_6k5cj"]
 [ext_resource type="Script" path="res://scripts/ui_game_over.gd" id="8_1toy0"]
 [ext_resource type="FontFile" uid="uid://ch3i6ovujm3io" path="res://assets/fonts/PixelAE-Bold.ttf" id="8_imah7"]
 [ext_resource type="PackedScene" uid="uid://kefoxdhveago" path="res://scenes/area_button.tscn" id="10_lncr7"]
@@ -587,6 +585,153 @@ terrain_set_0/terrain_0/color = Color(0.74902, 0.603922, 0.239216, 1)
 sources/0 = SubResource("TileSetAtlasSource_uwg55")
 sources/1 = SubResource("TileSetAtlasSource_biage")
 
+[sub_resource type="Animation" id="Animation_7dkmb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../UIStartCountdown/3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../UIStartCountdown/2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../UIStartCountdown/1:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../UIStartCountdown/GO!:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../UIStartCountdown/3:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../UIStartCountdown/2:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../UIStartCountdown/1:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../UIStartCountdown/GO!:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../UIStartCountdown/3:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../UIStartCountdown/2:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../UIStartCountdown/1:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../UIStartCountdown/GO!:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_66usa"]
 resource_name = "start_game"
 length = 3.8
@@ -735,153 +880,6 @@ tracks/11/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_7dkmb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../UIStartCountdown/3:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../UIStartCountdown/2:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../UIStartCountdown/1:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../UIStartCountdown/GO!:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../UIStartCountdown/3:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../UIStartCountdown/2:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../UIStartCountdown/1:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../UIStartCountdown/GO!:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../UIStartCountdown/3:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../UIStartCountdown/2:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("../UIStartCountdown/1:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("../UIStartCountdown/GO!:visible")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vyoxn"]
 _data = {
 "RESET": SubResource("Animation_7dkmb"),
@@ -891,13 +889,13 @@ _data = {
 [node name="DinoBall" type="Node2D"]
 script = ExtResource("1_vfftf")
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_area", "agent_area", "player", "agent", "ball", "ui_game_over", "ui_start_menu", "ui_start_countdown")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_area", "agent_area", "player", "ai", "beach_ball", "ui_game_over", "ui_start_menu", "ui_start_countdown")]
 script = ExtResource("1_c2lpi")
 player_area = NodePath("PlayerArea/PlayerAreaShape")
 agent_area = NodePath("AgentArea/AgentAreaShape")
-player = NodePath("../Player")
-agent = NodePath("../Agent")
-ball = NodePath("../BeachBall")
+player = NodePath("../HumanPlayer")
+ai = NodePath("../AIPlayer")
+beach_ball = NodePath("../BeachBall")
 ui_game_over = NodePath("../UIGameOver")
 ui_start_menu = NodePath("../UIStartMenu")
 ui_start_countdown = NodePath("../UIStartCountdown")
@@ -928,23 +926,13 @@ layer_1/name = "Foreground"
 layer_1/z_index = 2
 layer_1/tile_data = PackedInt32Array(-327681, 1, 0, -262145, 1, 1, -196609, 1, 2, -131073, 1, 3, -65537, 1, 4, -1, 1, 5, 65535, 1, 6, 131071, 1, 7, 196607, 1, 8, 262143, 1, 9, -393216, 65537, 0, -327680, 65537, 1, -262144, 65537, 2, -196608, 65537, 3, -131072, 65537, 4, -65536, 65537, 5, 0, 65537, 6, 65536, 65537, 7, 131072, 65537, 8, 196608, 65537, 9)
 
-[node name="Player" parent="." node_paths=PackedStringArray("dino_controller") instance=ExtResource("1_x4pek")]
-z_index = 1
-position = Vector2(-67, 0)
-dino_controller = NodePath("PlayerDino")
+[node name="AIPlayer" parent="." node_paths=PackedStringArray("beach_ball", "navigation_area") instance=ExtResource("7_6k5cj")]
+position = Vector2(69, 0)
+beach_ball = NodePath("../BeachBall")
+navigation_area = NodePath("../GameManager/AgentArea/AgentAreaShape")
 
-[node name="PlayerDino" parent="Player" instance=ExtResource("3_my4rq")]
-
-[node name="SprintMeter" parent="Player/PlayerDino" node_paths=PackedStringArray("dino_controller") instance=ExtResource("4_fjol2")]
-dino_controller = NodePath("..")
-
-[node name="Agent" parent="." node_paths=PackedStringArray("dino_controller", "ball", "area") instance=ExtResource("7_6k5cj")]
-dino_controller = NodePath("AgentDino")
-ball = NodePath("../BeachBall")
-area = NodePath("../GameManager/AgentArea/AgentAreaShape")
-
-[node name="AgentDino" parent="Agent" instance=ExtResource("3_my4rq")]
-position = Vector2(66, 0)
+[node name="HumanPlayer" parent="." instance=ExtResource("3_my4rq")]
+position = Vector2(-69, 0)
 
 [node name="BeachBall" parent="." instance=ExtResource("3_1rwuf")]
 z_index = 1

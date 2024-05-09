@@ -1,6 +1,6 @@
-extends RigidBody2D
-class_name BeachBall
+class_name BeachBall extends RigidBody2D
 
+signal changed_target
 signal touched_ground
 
 @export var velocity : float = 70.0
@@ -30,6 +30,7 @@ func set_target(new_target: Vector2):
 	travel_time_msec = max(MIN_TRAVEL_TIME_MSEC, (origin.distance_to(target) / velocity) * 1000)
 	last_hit_msec = Time.get_ticks_msec()
 	angular_velocity = randf_range(-PI, PI) * MAX_RAND_ANGULAR_VELOCITY
+	changed_target.emit(target)
 
 func reset():
 	origin = Vector2.ZERO

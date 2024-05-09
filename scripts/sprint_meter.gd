@@ -1,13 +1,14 @@
-extends Sprite2D
+class_name SprintMeter extends Sprite2D
 
-@export var dino_controller : DinoController
+@export var stamina_component : StaminaComponent 
 
 func _ready():
-	dino_controller.sprint_tank_depleting.connect(_show)
-	dino_controller.sprint_tank_full.connect(_start_hide_countdown)
+	stamina_component.depleting.connect(_show)
+	stamina_component.regenerated.connect(_start_hide_countdown)
 
 func _process(_delta):
-	frame = floor((1 - dino_controller.get_sprint_tank()) * 4)
+	var stamina_percent = stamina_component.stamina / stamina_component.MAX_AMOUNT
+	frame = floor((1 - stamina_percent) * 4)
 
 func _show():
 	visible = true

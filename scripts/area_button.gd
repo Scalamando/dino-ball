@@ -1,6 +1,5 @@
 @tool
-extends Area2D
-class_name AreaButton
+class_name AreaButton extends Area2D
 
 signal pressed
 
@@ -19,12 +18,12 @@ func _process(_delta):
 		label.text = text
 
 func _on_body_entered(body):
-	if body is DinoController:
+	if body is DinoCharacter:
 		focus = true
 		focus_background.visible = true
 
 func _on_body_exited(body):
-	if body is DinoController:
+	if body is DinoCharacter:
 		focus = false
 		focus_background.visible = false
 
