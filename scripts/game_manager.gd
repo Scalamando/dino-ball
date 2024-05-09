@@ -58,15 +58,15 @@ func _on_beach_ball_touched_ground():
 
 func _on_start_countdown():
 	beach_ball.reset()
-	beach_ball.position = Vector2.ZERO
-	active_player = player
+	active_player = null 
 	ui_start_menu.visible = false
 	ui_start_countdown.play()
 
 func _on_start():
-	started = true
+	active_player = player 
 	ai.active = true
 	beach_ball.set_target(rand_in_area(player_area))
+	started = true
 
 func _on_restart():
 	get_tree().reload_current_scene()

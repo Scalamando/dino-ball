@@ -17,8 +17,9 @@ var ground_position : Vector2 = Vector2.ZERO
 
 var travel_time_msec : int = 0.0
 var last_hit_msec : int = 0
-
 var progress: float = 0.0
+
+var reset_next_tick : bool = false
 
 @onready var ball_sprite = $BallSprite
 @onready var shadow_sprite = $ShadowSprite
@@ -33,6 +34,7 @@ func set_target(new_target: Vector2):
 	changed_target.emit(target)
 
 func reset():
+	reset_next_tick = true
 	origin = Vector2.ZERO
 	target = Vector2.ZERO
 	ground_position = Vector2.ZERO
@@ -41,6 +43,11 @@ func reset():
 	progress = 0.0
 
 func _integrate_forces(state):
+	if reset_next_tick:
+		position = Vector2.ZERO
+		angular_velocity = 0.0
+		reset_next_tick = false
+
 	if target == Vector2.ZERO:
 		return
 	
