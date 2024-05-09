@@ -30,7 +30,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6iqj5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DinoCharacter"]
-z_index = 1
+z_index = 2
 texture_filter = 1
 sprite_frames = ExtResource("2_84sut")
 animation = &"idle"
