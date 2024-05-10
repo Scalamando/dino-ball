@@ -936,6 +936,7 @@ position = Vector2(-69, 0)
 
 [node name="BeachBall" parent="." instance=ExtResource("3_1rwuf")]
 z_index = 1
+STARTING_HEIGHT = 12.0
 
 [node name="UIGameOver" type="Control" parent="." node_paths=PackedStringArray("score_label", "restart_button")]
 visible = false

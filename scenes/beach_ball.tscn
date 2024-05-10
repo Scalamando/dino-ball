@@ -19,6 +19,7 @@ physics_material_override = SubResource("PhysicsMaterial_v1kv0")
 gravity_scale = 0.0
 angular_damp = 0.1
 script = ExtResource("1_drua0")
+STARTING_HEIGHT = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_x0jbk")

@@ -1,3 +1,4 @@
+@tool
 class_name BeachBall extends RigidBody2D
 
 signal changed_target
@@ -5,6 +6,7 @@ signal touched_ground
 
 @export var velocity : float = 70.0
 @export var MIN_TRAVEL_TIME_MSEC = 1750
+@export var STARTING_HEIGHT : float = 30.0
 
 @export_group("Cosmetic")
 @export var MAX_RAND_ANGULAR_VELOCITY = 5.0
@@ -13,6 +15,7 @@ signal touched_ground
 
 var origin : Vector2 = Vector2.ZERO
 var target : Vector2 = Vector2.ZERO
+var height : float = 0.0
 var ground_position : Vector2 = Vector2.ZERO
 
 var travel_time_msec : int = 0.0
@@ -21,6 +24,7 @@ var progress: float = 0.0
 
 var reset_next_tick : bool = false
 
+@onready var origin_height : float = -STARTING_HEIGHT
 @onready var ball_sprite = $BallSprite
 @onready var shadow_sprite = $ShadowSprite
 @onready var collision_shape = $CollisionShape2D
@@ -28,6 +32,7 @@ var reset_next_tick : bool = false
 func set_target(new_target: Vector2):
 	origin = position
 	target = new_target
+	origin_height = height
 	travel_time_msec = max(MIN_TRAVEL_TIME_MSEC, (origin.distance_to(target) / velocity) * 1000)
 	last_hit_msec = Time.get_ticks_msec()
 	angular_velocity = randf_range(-PI, PI) * MAX_RAND_ANGULAR_VELOCITY
@@ -37,7 +42,9 @@ func reset():
 	reset_next_tick = true
 	origin = Vector2.ZERO
 	target = Vector2.ZERO
+	origin_height = -STARTING_HEIGHT
 	ground_position = Vector2.ZERO
+	height = -STARTING_HEIGHT 
 	travel_time_msec = 0.0
 	last_hit_msec = 0
 	progress = 0.0
@@ -54,7 +61,7 @@ func _integrate_forces(state):
 	progress = min(float(Time.get_ticks_msec() - last_hit_msec) / travel_time_msec, 1)
 	ground_position = lerp(origin, target, _inv_par(progress))
 	
-	var height = _calc_height(progress) * ARC_HEIGHT
+	height = _calc_height(progress) * ARC_HEIGHT
 	
 	if abs(height) > 10:
 		collision_shape.set_deferred("disabled", true)
@@ -67,7 +74,9 @@ func _integrate_forces(state):
 		_on_ground_hit()
 
 func _process(delta):
-	shadow_sprite.transform.origin = ground_position + GROUND_SHADOW_OFFSET
+	if Engine.is_editor_hint():
+		origin_height = -STARTING_HEIGHT
+	shadow_sprite.transform.origin = ground_position + GROUND_SHADOW_OFFSET - Vector2(0 , origin_height * (1 - progress))
 	shadow_sprite.modulate.a = 1.0 + 0.8 * _calc_height(progress)
 	var scale = 1.0 + 0.5 * _calc_height(progress)
 	shadow_sprite.scale = Vector2(scale, scale)
