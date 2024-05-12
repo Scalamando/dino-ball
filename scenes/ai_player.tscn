@@ -1,54 +1,21 @@
-[gd_scene load_steps=14 format=3 uid="uid://tw6xaici35mm"]
+[gd_scene load_steps=6 format=3 uid="uid://tw6xaici35mm"]
 
 [ext_resource type="Script" path="res://scripts/ai_player.gd" id="1_dl1hg"]
-[ext_resource type="Script" path="res://scripts/dino_character.gd" id="2_30gfj"]
-[ext_resource type="SpriteFrames" uid="uid://dtqqy80urejkx" path="res://resources/dino_sprite_frames/dino_sprites_blue.tres" id="2_nc3vt"]
-[ext_resource type="Script" path="res://scripts/dino_sprite.gd" id="3_qxswy"]
-[ext_resource type="SpriteFrames" uid="uid://btge8p1hy0cfq" path="res://resources/dino_sprite_frames/dino_sprites_green.tres" id="4_vnxdx"]
-[ext_resource type="SpriteFrames" uid="uid://bmlaadkwofm4c" path="res://resources/dino_sprite_frames/dino_sprites_red.tres" id="5_h1yj5"]
-[ext_resource type="SpriteFrames" uid="uid://dit2amv804gt7" path="res://resources/dino_sprite_frames/dino_sprites_yellow.tres" id="6_knr8w"]
-[ext_resource type="Texture2D" uid="uid://no4qfyiqam76" path="res://assets/sprites/shadow_2.png" id="7_63188"]
+[ext_resource type="PackedScene" uid="uid://0tai1g1d7rgi" path="res://scenes/dino_character.tscn" id="2_0hfpm"]
 [ext_resource type="PackedScene" uid="uid://j8dcxw4ldxkn" path="res://scenes/ball_hit_area.tscn" id="8_428sq"]
 [ext_resource type="Script" path="res://scripts/stamina_component.gd" id="9_qhqll"]
-[ext_resource type="PackedScene" uid="uid://fjaa5nwo51wm" path="res://scenes/sprint_meter.tscn" id="10_r4qbt"]
 [ext_resource type="Script" path="res://scripts/ai_controller.gd" id="11_dtnux"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6iqj5"]
-radius = 3.0
-height = 16.0
 
 [node name="AIPlayer" type="Node2D"]
 script = ExtResource("1_dl1hg")
 
-[node name="DinoCharacter" type="CharacterBody2D" parent="."]
-motion_mode = 1
-script = ExtResource("2_30gfj")
+[node name="DinoCharacter" parent="." instance=ExtResource("2_0hfpm")]
 color = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DinoCharacter"]
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_6iqj5")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DinoCharacter"]
-z_index = 1
-texture_filter = 1
-sprite_frames = ExtResource("2_nc3vt")
-animation = &"idle"
-autoplay = "idle"
-script = ExtResource("3_qxswy")
-color_sprite_frames = Array[Resource]([ExtResource("2_nc3vt"), ExtResource("4_vnxdx"), ExtResource("5_h1yj5"), ExtResource("6_knr8w")])
-
-[node name="ShadowSprite2D" type="Sprite2D" parent="DinoCharacter"]
-texture = ExtResource("7_63188")
 
 [node name="BallHitArea" parent="DinoCharacter" instance=ExtResource("8_428sq")]
 
 [node name="StaminaComponent" type="Node" parent="DinoCharacter"]
 script = ExtResource("9_qhqll")
-
-[node name="SprintMeter" parent="DinoCharacter" node_paths=PackedStringArray("stamina_component") instance=ExtResource("10_r4qbt")]
-stamina_component = NodePath("../StaminaComponent")
 
 [node name="AIController" type="Node" parent="." node_paths=PackedStringArray("dino_character")]
 script = ExtResource("11_dtnux")

@@ -1,45 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://di7durhtnwyth"]
+[gd_scene load_steps=7 format=3 uid="uid://di7durhtnwyth"]
 
 [ext_resource type="Script" path="res://scripts/human_player.gd" id="1_85oub"]
-[ext_resource type="Texture2D" uid="uid://no4qfyiqam76" path="res://assets/sprites/shadow_2.png" id="2_5sabg"]
-[ext_resource type="SpriteFrames" uid="uid://btge8p1hy0cfq" path="res://resources/dino_sprite_frames/dino_sprites_green.tres" id="2_8bjpi"]
-[ext_resource type="SpriteFrames" uid="uid://dtqqy80urejkx" path="res://resources/dino_sprite_frames/dino_sprites_blue.tres" id="2_84sut"]
-[ext_resource type="Script" path="res://scripts/dino_character.gd" id="2_uuoj4"]
-[ext_resource type="SpriteFrames" uid="uid://bmlaadkwofm4c" path="res://resources/dino_sprite_frames/dino_sprites_red.tres" id="3_3mopi"]
-[ext_resource type="Script" path="res://scripts/dino_sprite.gd" id="3_ghmd3"]
-[ext_resource type="SpriteFrames" uid="uid://dit2amv804gt7" path="res://resources/dino_sprite_frames/dino_sprites_yellow.tres" id="4_bpiad"]
+[ext_resource type="PackedScene" uid="uid://0tai1g1d7rgi" path="res://scenes/dino_character.tscn" id="2_lqch0"]
 [ext_resource type="PackedScene" uid="uid://j8dcxw4ldxkn" path="res://scenes/ball_hit_area.tscn" id="4_m2ygi"]
 [ext_resource type="Script" path="res://scripts/stamina_component.gd" id="9_6jtdw"]
 [ext_resource type="PackedScene" uid="uid://fjaa5nwo51wm" path="res://scenes/sprint_meter.tscn" id="10_wq0tr"]
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="11_s7nrh"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6iqj5"]
-radius = 3.0
-height = 16.0
-
 [node name="HumanPlayer" type="Node2D"]
 script = ExtResource("1_85oub")
 
-[node name="DinoCharacter" type="CharacterBody2D" parent="."]
-motion_mode = 1
-script = ExtResource("2_uuoj4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DinoCharacter"]
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_6iqj5")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DinoCharacter"]
-z_index = 2
-texture_filter = 1
-sprite_frames = ExtResource("2_84sut")
-animation = &"idle"
-autoplay = "idle"
-script = ExtResource("3_ghmd3")
-color_sprite_frames = Array[Resource]([ExtResource("2_84sut"), ExtResource("2_8bjpi"), ExtResource("3_3mopi"), ExtResource("4_bpiad")])
-
-[node name="ShadowSprite2D" type="Sprite2D" parent="DinoCharacter"]
-texture = ExtResource("2_5sabg")
+[node name="DinoCharacter" parent="." instance=ExtResource("2_lqch0")]
 
 [node name="BallHitArea" parent="DinoCharacter" instance=ExtResource("4_m2ygi")]
 

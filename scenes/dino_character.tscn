@@ -1,0 +1,55 @@
+[gd_scene load_steps=14 format=3 uid="uid://0tai1g1d7rgi"]
+
+[ext_resource type="Script" path="res://scripts/dino_character.gd" id="1_utceu"]
+[ext_resource type="SpriteFrames" uid="uid://dtqqy80urejkx" path="res://resources/dino_sprite_frames/dino_sprites_blue.tres" id="2_pdqtv"]
+[ext_resource type="Script" path="res://scripts/dino_sprite.gd" id="3_s33jl"]
+[ext_resource type="Texture2D" uid="uid://no4qfyiqam76" path="res://assets/sprites/shadow_2.png" id="4_6qkih"]
+[ext_resource type="Script" path="res://resources/dino_skin.gd" id="4_brfpo"]
+[ext_resource type="SpriteFrames" uid="uid://btge8p1hy0cfq" path="res://resources/dino_sprite_frames/dino_sprites_green.tres" id="5_kwphq"]
+[ext_resource type="SpriteFrames" uid="uid://bmlaadkwofm4c" path="res://resources/dino_sprite_frames/dino_sprites_red.tres" id="6_81oca"]
+[ext_resource type="SpriteFrames" uid="uid://dit2amv804gt7" path="res://resources/dino_sprite_frames/dino_sprites_yellow.tres" id="7_q4m6w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6iqj5"]
+radius = 3.0
+height = 16.0
+
+[sub_resource type="Resource" id="Resource_wp3d2"]
+script = ExtResource("4_brfpo")
+name = "Blue"
+sprite_frames = ExtResource("2_pdqtv")
+
+[sub_resource type="Resource" id="Resource_kgp4o"]
+script = ExtResource("4_brfpo")
+name = "Green"
+sprite_frames = ExtResource("5_kwphq")
+
+[sub_resource type="Resource" id="Resource_o36ef"]
+script = ExtResource("4_brfpo")
+name = "Red"
+sprite_frames = ExtResource("6_81oca")
+
+[sub_resource type="Resource" id="Resource_pmepy"]
+script = ExtResource("4_brfpo")
+name = "Yellow"
+sprite_frames = ExtResource("7_q4m6w")
+
+[node name="DinoCharacter" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_utceu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6iqj5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+sprite_frames = ExtResource("2_pdqtv")
+animation = &"idle"
+autoplay = "idle"
+script = ExtResource("3_s33jl")
+skins = Array[ExtResource("4_brfpo")]([SubResource("Resource_wp3d2"), SubResource("Resource_kgp4o"), SubResource("Resource_o36ef"), SubResource("Resource_pmepy")])
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_6qkih")
